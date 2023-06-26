@@ -1,4 +1,3 @@
-from importlib import metadata
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -23,7 +22,6 @@ def get_app() -> FastAPI:
     configure_logging()
     app = FastAPI(
         title="tee_backend",
-        version=metadata.version("tee_backend"),
         docs_url=None,
         redoc_url=None,
         openapi_url="/api/openapi.json",
