@@ -1,1 +1,1 @@
-web: python -m tee_backend_test
+web: uvicorn tee_backend_test.web.application:get_app --host=0.0.0.0 --port=8000
