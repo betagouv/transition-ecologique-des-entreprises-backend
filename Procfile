@@ -1,1 +1,1 @@
-web: poetry run python -m tee_backend
+web: python -m tee_backend
