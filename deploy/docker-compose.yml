@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./deploy/Dockerfile
+      target: prod
+    image: tee_backend_test:${TEE_BACKEND_TEST_VERSION:-latest}
+    restart: always
+    env_file:
+    - .env
+    environment:
+      TEE_BACKEND_TEST_HOST: 0.0.0.0
