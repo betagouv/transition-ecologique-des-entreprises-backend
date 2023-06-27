@@ -2,6 +2,7 @@
 
 from fastapi import FastAPI
 from fastapi.responses import UJSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from tee_backend_test.web.api.router import api_router
 from tee_backend_test.web.lifetime import (
@@ -27,6 +28,14 @@ def get_app() -> FastAPI:
         default_response_class=UJSONResponse,
     )
 
+    app.add_middleware(
+        CORSMiddleware,
+        # FIXME not safe
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
     # Adds startup and shutdown events.
     register_startup_event(app)
     register_shutdown_event(app)
