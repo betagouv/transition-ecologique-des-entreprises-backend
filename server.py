@@ -5,11 +5,11 @@ from tee_backend_test.settings import settings
 def serve() -> None:
     """Entrypoint of the application."""
     uvicorn.run(
-        "tee_backend_test.web.application:get_app",
+        "tee_backend_test.web.app:app",
         workers=settings.workers_count,
         host=settings.host,
         port=settings.port,
-        reload=settings.reload,
+        # reload=settings.reload,
         log_level=settings.log_level.value.lower(),
         factory=True,
     )

@@ -15,6 +15,9 @@ app = FastAPI(
     default_response_class=UJSONResponse,
 )
 
+# Main router for the API.
+app.include_router(router=api_router, prefix="/api")
+
 app.add_middleware(
     CORSMiddleware,
     # FIXME not safe
@@ -24,6 +27,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Main router for the API.
-app.include_router(router=api_router, prefix="/api")
 
