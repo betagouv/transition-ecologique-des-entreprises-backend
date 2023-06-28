@@ -1,20 +1,20 @@
 from typing import Awaitable, Callable
 
 from fastapi import FastAPI
-from prometheus_fastapi_instrumentator.instrumentation import (
-    PrometheusFastApiInstrumentator,
-)
+# from prometheus_fastapi_instrumentator.instrumentation import (
+#     PrometheusFastApiInstrumentator,
+# )
 
 
-def setup_prometheus(app: FastAPI) -> None:  # pragma: no cover
-    """
-    Enables prometheus integration.
+# def setup_prometheus(app: FastAPI) -> None:  # pragma: no cover
+#     """
+#     Enables prometheus integration.
 
-    :param app: current application.
-    """
-    PrometheusFastApiInstrumentator(should_group_status_codes=False).instrument(
-        app,
-    ).expose(app, should_gzip=True, name="prometheus_metrics")
+#     :param app: current application.
+#     """
+#     PrometheusFastApiInstrumentator(should_group_status_codes=False).instrument(
+#         app,
+#     ).expose(app, should_gzip=True, name="prometheus_metrics")
 
 
 def register_startup_event(
@@ -32,7 +32,7 @@ def register_startup_event(
 
     @app.on_event("startup")
     async def _startup() -> None:  # noqa: WPS430
-        setup_prometheus(app)
+        # setup_prometheus(app)
         pass  # noqa: WPS420
 
     return _startup

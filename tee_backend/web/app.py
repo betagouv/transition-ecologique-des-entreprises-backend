@@ -7,10 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from tee_backend.logging import configure_logging
 from tee_backend.web.api.router import api_router
 
-# from tee_backend.web.lifetime import (
-#     register_shutdown_event,
-#     register_startup_event,
-# )
+from tee_backend.web.lifetime import (
+    register_shutdown_event,
+    register_startup_event,
+)
 
 def get_app() -> FastAPI:
     """
@@ -32,8 +32,8 @@ def get_app() -> FastAPI:
     )
 
     # # Adds startup and shutdown events.
-    # register_startup_event(app)
-    # register_shutdown_event(app)
+    register_startup_event(app)
+    register_shutdown_event(app)
 
     # Main router for the API.
     app.include_router(router=api_router, prefix="/api")
