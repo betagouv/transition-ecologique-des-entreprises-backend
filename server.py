@@ -1,9 +1,15 @@
 # import os
 # import shutil
+import json
+from loguru import logger
+
+from tee_backend.logging import configure_logging
 
 import uvicorn
 
 from tee_backend.settings import settings
+
+configure_logging()
 
 # def set_multiproc_dir() -> None:
 #     """
@@ -31,8 +37,12 @@ from tee_backend.settings import settings
 
 def serve() -> None:
     """Entrypoint of the application."""
+
     # set_multiproc_dir()
-    print(f'settings', settings)
+    # print(f'settings', settings)
+    settings_json = json.dumps(settings.dict(), indent=4)
+    logger.debug(f'settings : {settings_json}')
+
     uvicorn.run(
         "tee_backend.web.app:app",
         workers=settings.workers_count,

@@ -16,6 +16,23 @@ def build_headers_brevo (token):
     }
     return headers
 
+def build_api_url(endpoint, value=""):
+    api_url_base = settings.api_brevo
+    logger.debug(f'api_url_base : {api_url_base}')
+    api_url = api_url_base + endpoint + value
+    logger.debug(f'api_url : {api_url}')
+
+    token = settings.token_api_brevo
+    logger.debug(f'token : {token}')
+
+    headers = build_headers_brevo(token)
+    logger.debug(f'headers : {headers}')
+
+    return {
+        "url": api_url,
+        "headers": headers
+    }
+
 @router.post("/add_contact", response_model=Contact)
 async def add_contact(
     incoming_contact: Contact,
@@ -26,18 +43,10 @@ async def add_contact(
     :param incoming_contact: incoming message.
     :returns: contact same as the incoming.
     """
-
-    api_url_base = settings.api_brevo
-    logger.debug(f'api_url_base : {api_url_base}')
-
-    api_url = api_url_base + "/contact"
-    logger.debug(f'api_url : {api_url}')
-
     logger.debug(f'incoming_contact : {incoming_contact}')
-    token = settings.token_api_siren
 
-    headers = build_headers_brevo(token)
-    logger.debug(f'headers : {headers}')
+    params = build_api_url('/contact')
+    logger.debug(f'params : {params}')
 
     # resp = requests.post(api_url, data=Contact, headers=headers)
     # logger.debug(f'resp : {resp}')
