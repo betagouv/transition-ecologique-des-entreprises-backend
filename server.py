@@ -3,7 +3,7 @@
 
 import uvicorn
 
-from tee_backend_test.settings import settings
+from tee_backend.settings import settings
 
 # def set_multiproc_dir() -> None:
 #     """
@@ -32,8 +32,9 @@ from tee_backend_test.settings import settings
 def serve() -> None:
     """Entrypoint of the application."""
     # set_multiproc_dir()
+    print(f'settings', settings)
     uvicorn.run(
-        "tee_backend_test.web.app:app",
+        "tee_backend.web.app:app",
         workers=settings.workers_count,
         host=settings.host,
         port=settings.port,

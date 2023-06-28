@@ -1,6 +1,8 @@
-# tee_backend_test
+# tee_backend
 
 This project was generated using fastapi_template.
+
+---
 
 ## Poetry
 
@@ -11,7 +13,8 @@ To run the project use this set of commands:
 
 ```bash
 poetry install
-poetry run python -m tee_backend_test
+# poetry run python -m tee_backend
+poetry run python server.py
 ```
 
 This will start the server on the configured host.
@@ -19,6 +22,14 @@ This will start the server on the configured host.
 You can find swagger documentation at `/api/docs`.
 
 You can read more about poetry here: https://python-poetry.org/
+
+To export requirements run:
+
+```bash
+poetry export -f requirements.txt --without-hashes --output requirements.txt
+```
+
+---
 
 ## Docker
 
@@ -43,13 +54,15 @@ But you have to rebuild image every time you modify `poetry.lock` or `pyproject.
 docker-compose -f deploy/docker-compose.yml --project-directory . build
 ```
 
+---
+
 ## Project structure
 
 ```bash
-$ tree "tee_backend_test"
-tee_backend_test
+$ tree "tee_backend"
+tee_backend
 ├── conftest.py  # Fixtures for all tests.
-├── __main__.py  # Startup script. Starts uvicorn.
+├── server.py  # Startup script. Starts uvicorn.
 ├── services  # Package for different external services such as rabbit or redis etc.
 ├── settings.py  # Main configuration settings for project.
 ├── static  # Static content.
@@ -57,7 +70,8 @@ tee_backend_test
 └── web  # Package contains web server. Handlers, startup config.
     ├── api  # Package with all handlers.
     │   └── router.py  # Main router.
-    ├── application.py  # FastAPI application configuration.
+    ├── app.py  # FastAPI application configuration.
+    ├── app_factory.py  # FastAPI application configuration for factory mode.
     └── lifetime.py  # Contains actions to perform on startup and shutdown.
 ```
 
@@ -68,21 +82,27 @@ This application can be configured with environment variables.
 You can create `.env` file in the root directory and place all
 environment variables here.
 
-All environment variables should start with "TEE_BACKEND_TEST_" prefix.
+All environment variables should start with "TEE_BACKEND_" prefix.
 
-For example if you see in your "tee_backend_test/settings.py" a variable named like
-`random_parameter`, you should provide the "TEE_BACKEND_TEST_RANDOM_PARAMETER"
+For example if you see in your "tee_backend/settings.py" a variable named like
+`random_parameter`, you should provide the "TEE_BACKEND_RANDOM_PARAMETER"
 variable to configure the value. This behaviour can be changed by overriding `env_prefix` property
-in `tee_backend_test.settings.Settings.Config`.
+in `tee_backend.settings.Settings.Config`.
 
 An example of .env file:
+
 ```bash
-TEE_BACKEND_TEST_RELOAD="True"
-TEE_BACKEND_TEST_PORT="8000"
-TEE_BACKEND_TEST_ENVIRONMENT="dev"
+TEE_BACKEND_RELOAD="True"
+TEE_BACKEND_PORT="8000"
+TEE_BACKEND_ENVIRONMENT="dev"
+TEE_BACKEND_LOG_LEVEL="DEBUG"
+TEE_BACKEND_TOKEN_API_BREVO="xxxx"
+TEE_BACKEND_TOKEN_API_SIREN="xxxx"
 ```
 
 You can read more about BaseSettings class here: https://pydantic-docs.helpmanual.io/usage/settings/
+
+---
 
 ## Pre-commit
 
@@ -100,9 +120,7 @@ By default it runs:
 * isort (sorts imports in all files);
 * flake8 (spots possible bugs);
 
-
 You can read more about pre-commit here: https://pre-commit.com/
-
 
 ## Running tests
 
@@ -119,4 +137,28 @@ For running tests on your local machine.
 2. Run the pytest.
 ```bash
 pytest -vv .
+```
+
+---
+
+## Deploy on Scalingo
+
+### Procfile
+
+Scalingo needs a `Procfile`with :
+
+- At least one `web: ...` entry
+- `host` must be set on `0.0.0.0`
+- `port` must use the automatic port provided by Scalingo, so it needs to be set on `$PORT`
+
+```
+web: uvicorn tee_backend.web.app:app --host=0.0.0.0 --port=$PORT --workers=1
+```
+
+### Requirements.txt
+
+Export a `requirements.txt` from poetry
+
+```
+poetry export --without-hashes --without dev --format=requirements.txt > requirements.txt
 ```

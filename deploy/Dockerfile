@@ -17,7 +17,7 @@ RUN poetry install --only main
 COPY . /app/src/
 RUN poetry install --only main
 
-CMD ["/usr/local/bin/python", "-m", "tee_backend_test"]
+CMD ["/usr/local/bin/python", "server.py"]
 
 FROM prod as dev
 

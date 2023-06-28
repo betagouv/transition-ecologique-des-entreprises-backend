@@ -59,4 +59,4 @@ repos:
     types: [python]
     pass_filenames: false
     args:
-    - "tee_backend_test"
+    - "tee_backend"

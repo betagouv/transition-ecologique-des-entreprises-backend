@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "tee_backend_test"
+name = "tee_backend"
 version = "0.1.0"
 description = ""
 authors = [
@@ -20,6 +20,9 @@ ujson = "^5.7.0"
 httptools = "^0.5.0"
 prometheus-client = "^0.16.0"
 prometheus-fastapi-instrumentator = "5.9.1"
+loguru = "^0.7.0"
+email-validator = "^2.0.0.post2"
+requests = "^2.31.0"
 
 
 [tool.poetry.dev-dependencies]
@@ -39,7 +42,7 @@ httpx = "^0.23.3"
 [tool.isort]
 profile = "black"
 multi_line_output = 3
-src_paths = ["tee_backend_test",]
+src_paths = ["tee_backend",]
 
 [tool.mypy]
 strict = true
@@ -61,12 +64,12 @@ filterwarnings = [
     "ignore:.*unclosed.*:ResourceWarning",
 ]
 env = [
-    "TEE_BACKEND_TEST_ENVIRONMENT=pytest",
-    "TEE_BACKEND_TEST_DB_BASE=tee_backend_test_test",
+    "TEE_BACKEND_ENVIRONMENT=pytest",
+    "TEE_BACKEND_DB_BASE=tee_backend",
 ]
 
 [fastapi-template.options]
-project_name = "tee_backend_test"
+project_name = "tee_backend"
 api_type = "rest"
 enable_redis = "None"
 enable_rmq = "None"

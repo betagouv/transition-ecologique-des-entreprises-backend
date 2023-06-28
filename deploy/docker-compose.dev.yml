@@ -12,4 +12,4 @@ services:
     - .:/app/src/
     environment:
       # Enables autoreload.
-      TEE_BACKEND_TEST_RELOAD: "True"
+      TEE_BACKEND_RELOAD: "True"

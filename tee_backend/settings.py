@@ -4,7 +4,7 @@ from tempfile import gettempdir
 
 from pydantic import BaseSettings
 
-TEMP_DIR = Path(gettempdir())
+# TEMP_DIR = Path(gettempdir())
 
 
 class LogLevel(str, enum.Enum):  # noqa: WPS600
@@ -39,13 +39,19 @@ class Settings(BaseSettings):
 
     log_level: LogLevel = LogLevel.INFO
 
+    token_api_brevo: str = ""
+    token_api_siren: str = ""
+
     # This variable is used to define
     # multiproc_dir. It's required for [uvi|guni]corn projects.
-    prometheus_dir: Path = TEMP_DIR / "prom"
+    # prometheus_dir: Path = TEMP_DIR / "prom"
+
+    api_brevo: str = "https://api.brevo.com/v3"
+    api_siren: str = "https://api.insee.fr/entreprises/sirene/V3"
 
     class Config:
         env_file = ".env"
-        env_prefix = "TEE_BACKEND_TEST_"
+        env_prefix = "TEE_BACKEND_"
         env_file_encoding = "utf-8"
 
 
