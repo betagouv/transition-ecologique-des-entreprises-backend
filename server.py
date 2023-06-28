@@ -9,7 +9,6 @@ import uvicorn
 
 from tee_backend.settings import settings
 
-configure_logging()
 
 # def set_multiproc_dir() -> None:
 #     """
@@ -37,6 +36,7 @@ configure_logging()
 
 def serve() -> None:
     """Entrypoint of the application."""
+    configure_logging()
 
     # set_multiproc_dir()
     # print(f'settings', settings)

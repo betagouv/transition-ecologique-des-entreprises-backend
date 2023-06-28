@@ -1,28 +1,22 @@
 from pydantic import BaseModel, validator, EmailStr
-from typing import Optional, List
+from typing import Optional, List, Union
 
 class ContactAttributes(BaseModel):
     """Simple contact attributes model."""
 
-    # name: str = "contact"
-    # surname: str = "multi"
-    # tel: Optional[str] = "06 83 65 84 91"
-    # opt_in: bool = False
-    # siret: str = "83014132100034"
-
-    NOM: str
-    PRENOM: str
-    TEL: str
-    SIRET: str
-    FORM_NEEDS: str
-    OPT_IN: str
-    PROJECT_NEEDS: str
-    PROJECT_SECTORS: str
-    USER_ROLES: str
-    USER_GOALS: str
-    PROJECT_STATUS: str
-    STRUCTURE_SIZE: str
-    PROGRAM_ID: str
+    NOM: str = "contact"
+    PRENOM: str = "multi"
+    TEL: Optional[str] = "06 83 65 84 91"
+    SIRET: str = "83014132100034"
+    OPT_IN: Union[str, bool] = False
+    # FORM_NEEDS: str
+    PROJECT_NEEDS: str = "advices"
+    PROJECT_SECTORS: str = "industry"
+    USER_ROLES: str = "manager"
+    USER_GOALS: str = "impact"
+    # PROJECT_STATUS: str = ""
+    STRUCTURE_SIZE: str = "tpe"
+    PROGRAM_ID: str = "diag-decarbon-action"
 
     @validator("SIRET")
     def siret_validator(cls, value):

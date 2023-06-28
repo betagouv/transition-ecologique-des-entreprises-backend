@@ -18,15 +18,15 @@ def build_headers_siren (token):
 
 def build_api_url(endpoint, siret):
     api_url_base = settings.api_siren
-    logger.debug(f'api_url_base : {api_url_base}')
+    # logger.debug(f'api_url_base : {api_url_base}')
     api_url = api_url_base + endpoint + siret
-    logger.debug(f'api_url : {api_url}')
+    # logger.debug(f'api_url : {api_url}')
 
     token = settings.token_api_siren
-    logger.debug(f'token : {token}')
+    # logger.debug(f'token : {token}')
 
     headers = build_headers_siren(token)
-    logger.debug(f'headers : {headers}')
+    # logger.debug(f'headers : {headers}')
 
     return {
         "url": api_url,
