@@ -41,7 +41,7 @@ def serve() -> None:
     # set_multiproc_dir()
     # print(f'settings', settings)
     settings_json = json.dumps(settings.dict(), indent=4)
-    logger.debug(f'settings : {settings_json}')
+    logger.info(f'settings : {settings_json}')
 
     uvicorn.run(
         "tee_backend.web.app:app",
