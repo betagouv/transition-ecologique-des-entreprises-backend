@@ -28,3 +28,9 @@ class Etablissement (BaseModel):
 
     header: dict
     etablissement: Optional[dict]
+
+class UniteLegale (BaseModel):
+    """Simple uniteLegale model."""
+
+    header: dict
+    uniteLegale: Optional[dict]

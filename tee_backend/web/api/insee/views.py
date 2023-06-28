@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from tee_backend.web.api.insee.schema import Siret, Siren, Etablissement
+from tee_backend.web.api.insee.schema import Siret, Siren, Etablissement, UniteLegale
 from tee_backend.settings import settings
 
 import requests
@@ -41,7 +41,7 @@ async def get_by_siret(
     Sends etablissement back to user.
 
     :param incoming_siret: incoming message.
-    :returns: siret same as the incoming.
+    :returns: établissement.
     """
 
     logger.debug(f'incoming_siret : {incoming_siret}')
@@ -57,15 +57,15 @@ async def get_by_siret(
 
     return data
 
-@router.post("/get_by_siren", response_model=Etablissement)
-async def get_by_siret(
+@router.post("/get_by_siren", response_model=UniteLegale)
+async def get_by_siren(
     incoming_siren: Siren,
-) -> Etablissement:
+) -> UniteLegale:
     """
-    Sends etablissement back to user.
+    Sends UniteLegale back to user.
 
     :param incoming_siret: incoming message.
-    :returns: siret same as the incoming.
+    :returns: unité légale.
     """
 
     logger.debug(f'incoming_siren : {incoming_siren}')
