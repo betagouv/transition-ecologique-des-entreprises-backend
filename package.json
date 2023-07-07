@@ -1,0 +1,25 @@
+{
+  "name": "transition-ecologique-des-entreprises",
+  "version": "1.0.0",
+  "description": "Dépôt de code le la startup d'État \"Transition écologique des entreprises\"",
+  "keywords": [],
+  "author": "Julien Paris (https://multi.coop)",
+  "contributors": [
+    "Pierre Camilleri (https://multi.coop)"
+  ],
+  "private": false,
+  "license": "AGPL-3.0",
+  "scripts": {
+    "build": "tsc --build --verbose"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.0",
+    "ts-node": "^10.9.1"
+  }
+}
