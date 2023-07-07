@@ -1,5 +1,11 @@
 node_modules
+
 build
-npm-debug.log
+
+# Default environment variables
 .env
-.DS_Store
+
+# Local compilation information
+*.tsbuildinfo
+
+
