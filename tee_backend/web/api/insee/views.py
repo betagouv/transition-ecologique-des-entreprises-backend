@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
+# from fastapi.encoders import jsonable_encoder
 from tee_backend.web.api.insee.schema import Siret, Siren, Etablissement, UniteLegale
 from tee_backend.settings import settings
 
@@ -51,7 +52,16 @@ async def get_by_siret(
 
     resp = requests.get(params['url'], headers=params['headers'])
     logger.debug(f'resp : {resp}')
+    logger.debug(f'resp.ok : {resp.ok}')
+    # json_compatible_item_data = jsonable_encoder(resp)
+    # logger.debug(f'json_compatible_item_data : {json_compatible_item_data}')
     data = resp.json()
+    logger.debug(f'data : {data}')
+
+    if not resp.ok :
+        message = data["header"]["message"]
+        raise HTTPException(status_code=404, detail=message)
+
     json_str = json.dumps(data, indent=4)
     logger.debug(f'json_str : \n{json_str}')
 

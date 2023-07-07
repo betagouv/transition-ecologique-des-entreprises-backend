@@ -1,6 +1,6 @@
 # tee_backend
 
-This project was generated using fastapi_template.
+This project was generated using [fastapi_template](https://github.com/topics/fastapi-boilerplate).
 
 ---
 

@@ -14,8 +14,8 @@ class ContactAttributes(BaseModel):
     PROJECT_SECTORS: str = "industry"
     USER_ROLES: str = "manager"
     USER_GOALS: str = "impact"
-    # PROJECT_STATUS: str = ""
-    STRUCTURE_SIZE: str = "tpe"
+    # PROJECT_STATUS: str = "economies"
+    STRUCTURE_SIZE: str = "TPE"
     PROGRAM_ID: str = "diag-decarbon-action"
 
     @validator("SIRET")
