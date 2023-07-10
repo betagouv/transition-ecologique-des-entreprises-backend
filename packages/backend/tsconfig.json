@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     // Directory from which to pull the source code
-    "rootDir": "./src",
+    "rootDir": ".",
     // Directory in which to put the generated js code
     "outDir": "./build"
   }

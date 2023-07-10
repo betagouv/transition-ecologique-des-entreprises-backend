@@ -1,7 +1,9 @@
-import https from 'https'
+// import { Express } from 'express'
+import fetch from 'node-fetch'
+// console.log('fetch : ', fetch)
 
 describe('Test the root path', () => {
-  test('It should response the GET method', (done) => {
+  test('It should response the GET method', done => {
     // curl -X 'POST' \
     // 'https://tee-backend-test.osc-fr1.scalingo.io/api/insee/get_by_siret' \
     //   -H 'accept: application/json' \
@@ -11,36 +13,26 @@ describe('Test the root path', () => {
     // }'
     const api_host = 'https://tee-backend-test.osc-fr1.scalingo.io'
     const api_path = '/api/insee/get_by_siret'
+    const api_url = `${api_host}${api_path}`
+    console.log('api_url : ', api_url)
 
     const request_body = { siret: '83014132100034' }
     const postData = JSON.stringify(request_body)
+    console.log('postData : ', postData)
 
-    const options = {
-      hostname: api_host,
-      // port: 443,
-      path: api_path,
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
+    const headers = {
+      accept: 'application/json',
+      'Content-Type': 'application/json'
     }
+    console.log('headers : ', headers)
 
-    const req = https.request(options, (res) => {
-      console.log('statusCode:', res.statusCode)
-      console.log('headers:', res.headers)
-
-      res.on('data', (d) => {
-        process.stdout.write(d)
-      })
-    })
-
-    req.on('error', (e) => {
-      console.error(e)
-    })
-
-    req.write(postData)
-    req.end()
+    // const response = fetch(api_url, {
+    //   method: 'POST',
+    //   headers: headers,
+    //   body: postData
+    // })
+    // const respJson = await response.json()
+    // console.log('respJson : ', respJson)
 
     expect(true)
     done()
