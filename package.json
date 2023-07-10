@@ -13,7 +13,7 @@
     "build": "tsc --build --verbose"
   },
   "workspaces": [
-    "packages/*"
+    "./packages/*"
   ],
   "dependencies": {
     "typescript": "^5.1.6"
