@@ -1,16 +1,7 @@
-// import { Express } from 'express'
-import fetch from 'node-fetch'
-// console.log('fetch : ', fetch)
+import axios from 'axios'
 
 describe('Test the root path', () => {
-  test('It should response the GET method', done => {
-    // curl -X 'POST' \
-    // 'https://tee-backend-test.osc-fr1.scalingo.io/api/insee/get_by_siret' \
-    //   -H 'accept: application/json' \
-    //   -H 'Content-Type: application/json' \
-    //   -d '{
-    //   "siret": "83014132100034"
-    // }'
+  test('It should response the GET method', async () => {
     const api_host = 'https://tee-backend-test.osc-fr1.scalingo.io'
     const api_path = '/api/insee/get_by_siret'
     const api_url = `${api_host}${api_path}`
@@ -26,15 +17,13 @@ describe('Test the root path', () => {
     }
     console.log('headers : ', headers)
 
-    // const response = fetch(api_url, {
-    //   method: 'POST',
-    //   headers: headers,
-    //   body: postData
-    // })
-    // const respJson = await response.json()
-    // console.log('respJson : ', respJson)
+    const response = axios(api_url, {
+      method: 'post',
+      headers: headers,
+      data: postData
+    })
+    console.log('respJson : ', (await response).data)
 
     expect(true)
-    done()
   })
 })
