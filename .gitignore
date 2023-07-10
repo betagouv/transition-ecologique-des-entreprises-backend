@@ -8,4 +8,6 @@ build
 # Local compilation information
 *.tsbuildinfo
 
+# python related files
+*.pyc
 
