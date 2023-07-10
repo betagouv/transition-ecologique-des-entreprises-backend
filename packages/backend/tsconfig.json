@@ -1,16 +1,9 @@
 {
-    "compilerOptions": {
-        "target": "es2022",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "declaration": true,
-        "strict": true,
-        "incremental": true,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-        "rootDir": "./src",
-        "outDir": "./build",
-        "composite": true
-    }
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Directory from which to pull the source code
+    "rootDir": "./src",
+    // Directory in which to put the generated js code
+    "outDir": "./build"
+  }
 }
