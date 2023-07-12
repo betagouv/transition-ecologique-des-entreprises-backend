@@ -1,6 +1,6 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express } from 'express'
 import * as dotenv from 'dotenv'
-import axios from 'axios'
+import router from './controller/routes'
 
 dotenv.config()
 
@@ -11,42 +11,9 @@ const port: number = 3000
 
 app.use(express.json())
 
+app.use('/api', router)
+
 app.set('env', environment)
-
-app.get('/api/health', (_req: Request, res: Response): void => {
-  res.status(200).send()
-})
-
-app.post('/api/insee/get_by_siret', async (req: Request, res: Response): Promise<void> => {
-  // fetch request siret parameter
-  const siret = req.body.siret
-  console.log(siret)
-
-  // get token from environment
-  const token = req.app.get('env').SIRENE_API_TOKEN
-  console.log(token)
-
-  // build header
-  const headers = {
-    accept: 'application/json',
-    'content-type': 'application/json',
-    authorization: `Bearer ${token}`
-  }
-
-  const api_siren_url = `https://api.insee.fr/entreprises/sirene/V3/siret/${siret}`
-
-  // api sirene call
-  try {
-    const response = await axios.get(api_siren_url, {
-      headers: headers
-    })
-    // send response
-    res.send(response.data)
-  } catch (error: any) {
-    console.log(error)
-    res.status(401).send(error.message)
-  }
-})
 
 app.listen(port)
 
