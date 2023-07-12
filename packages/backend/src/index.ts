@@ -6,6 +6,8 @@ const environment = process.env
 const app: Express = express()
 const port: number = 3000
 
+app.use(express.json())
+
 app.set('env', environment)
 
 app.get('/', helloWorldRoute)
