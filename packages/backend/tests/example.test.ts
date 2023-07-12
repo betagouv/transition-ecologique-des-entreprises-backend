@@ -2,9 +2,8 @@ import axios from 'axios'
 
 import golden_file_json from '../data/test_files/golden_file-siret-01.json'
 
-describe('Test the root path', () => {
-  test('It should response the GET method', async () => {
-
+describe('Test golden files', () => {
+  test('Test golden files', async () => {
     console.log('golden_file_json : ', golden_file_json)
 
     // const api_host = 'https://tee-backend-test.osc-fr1.scalingo.io'
