@@ -32,17 +32,22 @@ app.post('/api/insee/get_by_siret', async (req: Request, res: Response): Promise
     authorization: `Bearer ${token}`
   }
 
-  const api_siren_url = `https://api.insee.fr/entreprises/sirene/V3/${siret}`
+  const api_siren_url = `https://api.insee.fr/entreprises/sirene/V3/siret/${siret}`
 
   // api sirene call
-  const response = await axios(api_siren_url, {
-    method: 'get',
-    headers: headers
-  })
-
-  // send response
-  res.send(response)
+  try {
+    const response = await axios.get(api_siren_url, {
+      headers: headers
+    })
+    // send response
+    res.send(response.data)
+  } catch (error: any) {
+    console.log(error)
+    res.status(401).send(error.message);
+  }
 })
+
+
 
 app.listen(port)
 
