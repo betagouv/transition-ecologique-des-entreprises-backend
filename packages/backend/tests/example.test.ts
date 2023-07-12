@@ -7,7 +7,8 @@ describe('Test the root path', () => {
 
     console.log('golden_file_json : ', golden_file_json)
 
-    const api_host = 'https://tee-backend-test.osc-fr1.scalingo.io'
+    // const api_host = 'https://tee-backend-test.osc-fr1.scalingo.io'
+    const api_host = 'http://localhost:3000' // local API Express - should be started before testing
     const api_path = '/api/insee/get_by_siret'
     const api_url = `${api_host}${api_path}`
     console.log('api_url : ', api_url)
