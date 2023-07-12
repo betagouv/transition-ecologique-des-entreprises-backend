@@ -1,9 +1,12 @@
 import axios from 'axios'
 
-import golden_file_json from 'data/test_files/golden_file-siret-01.json'
+import golden_file_json from '../data/test_files/golden_file-siret-01.json'
 
 describe('Test the root path', () => {
   test('It should response the GET method', async () => {
+
+    console.log('golden_file_json : ', golden_file_json)
+
     const api_host = 'https://tee-backend-test.osc-fr1.scalingo.io'
     const api_path = '/api/insee/get_by_siret'
     const api_url = `${api_host}${api_path}`
@@ -19,13 +22,14 @@ describe('Test the root path', () => {
     }
     console.log('headers : ', headers)
 
-    const response = axios(api_url, {
+    const response = await axios(api_url, {
       method: 'post',
       headers: headers,
       data: postData
     })
-    console.log('respJson : ', (await response).data)
+    const respData = response.data
+    console.log('respData : ', respData)
 
-    expect(true)
+    expect(respData).toEqual(golden_file_json)
   })
 })

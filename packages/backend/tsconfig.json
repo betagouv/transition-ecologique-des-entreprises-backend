@@ -1,4 +1,7 @@
 {
+  "include": [
+    "./data/**/*"
+  ],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "resolveJsonModule": true,
