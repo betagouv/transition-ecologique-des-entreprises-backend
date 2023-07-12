@@ -13,6 +13,10 @@ app.use(express.json())
 
 app.set('env', environment)
 
+app.get('/api/health', (_req: Request, res: Response): void => {
+  res.status(200).send()
+})
+
 app.post('/api/insee/get_by_siret', async (req: Request, res: Response): Promise<void> => {
   // fetch request siret parameter
   const siret = req.body.siret
