@@ -8,32 +8,25 @@ router.get('/health', (_req: Request, res: Response): void => {
 })
 
 router.post('/insee/get_by_siret', async (req: Request, res: Response): Promise<void> => {
-  // fetch request siret parameter
-  const siret = req.body.siret
-  console.log(siret)
+  const requested_siret = req.body.siret
 
-  // get token from environment
-  const token = req.app.get('env').SIRENE_API_TOKEN
-  console.log(token)
+  const api_token = req.app.get('env').SIRENE_API_TOKEN
 
-  // build header
+  const jsonContentType = 'application/json'
   const headers = {
-    accept: 'application/json',
-    'content-type': 'application/json',
-    authorization: `Bearer ${token}`
+    accept: jsonContentType,
+    'content-type': jsonContentType,
+    authorization: `Bearer ${api_token}`
   }
 
-  const api_siren_url = `https://api.insee.fr/entreprises/sirene/V3/siret/${siret}`
+  const api_siren_url = `https://api.insee.fr/entreprises/sirene/V3/siret/${requested_siret}`
 
-  // api sirene call
   try {
     const response = await axios.get(api_siren_url, {
       headers: headers
     })
-    // send response
     res.send(response.data)
   } catch (error: any) {
-    console.log(error)
     res.status(401).send(error.message)
   }
 })
