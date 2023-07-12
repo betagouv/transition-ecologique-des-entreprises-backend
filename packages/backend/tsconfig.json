@@ -1,6 +1,7 @@
 {
   "include": [
-    "./data/**/*"
+    "data/**/*",
+    "src/**/*"
   ],
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
