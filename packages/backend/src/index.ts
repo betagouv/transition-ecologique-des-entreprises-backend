@@ -1,5 +1,4 @@
 import express, { Express, Request, Response } from 'express'
-import { helloWorldRoute } from './routes'
 import * as dotenv from 'dotenv'
 import axios from 'axios'
 
@@ -13,8 +12,6 @@ const port: number = 3000
 app.use(express.json())
 
 app.set('env', environment)
-
-app.get('/', helloWorldRoute)
 
 app.post('/api/insee/get_by_siret', async (req: Request, res: Response): Promise<void> => {
   // fetch request siret parameter
@@ -43,11 +40,9 @@ app.post('/api/insee/get_by_siret', async (req: Request, res: Response): Promise
     res.send(response.data)
   } catch (error: any) {
     console.log(error)
-    res.status(401).send(error.message);
+    res.status(401).send(error.message)
   }
 })
-
-
 
 app.listen(port)
 
