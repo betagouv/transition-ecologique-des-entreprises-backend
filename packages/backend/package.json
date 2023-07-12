@@ -2,11 +2,11 @@
   "name": "@tee/backend",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "build/src/index.js",
   "scripts": {
     "build": "tsc --build",
     "dev": "tsc --build --watch",
-    "start": "nodemon build/index.js",
+    "start": "nodemon build/src/index.js",
     "test": "jest"
   },
   "keywords": [],

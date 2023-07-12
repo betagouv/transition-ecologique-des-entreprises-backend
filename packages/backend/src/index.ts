@@ -21,6 +21,7 @@ app.post('/api/insee/get_by_siret', (req: Request, res: Response): void => {
   // build header
   // api sirene call
   // send response
+  res.send({resp: 'test'})
 })
 
 app.listen(port)
