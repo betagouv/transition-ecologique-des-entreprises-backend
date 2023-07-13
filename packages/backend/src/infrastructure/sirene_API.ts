@@ -11,10 +11,22 @@ const makeHeaders = (token: string) => {
   }
 }
 
+function ensureError(value: unknown): Error {
+  if (value instanceof Error) return value
+
+  let stringified = '[Unable to stringify the thrown value]'
+  try {
+    stringified = JSON.stringify(value)
+  } catch {}
+
+  const error = new Error(`This value was thrown as is, not through an Error: ${stringified}`)
+  return error
+}
+
 export const requestSireneAPI = async (
   siret: string,
   token: string
-): Promise<Result<Etablissement, unknown>> => {
+): Promise<Result<Etablissement, Error>> => {
   const api_sirene_url = `https://api.insee.fr/entreprises/sirene/V3/siret/${siret}`
 
   try {
@@ -22,7 +34,9 @@ export const requestSireneAPI = async (
       headers: makeHeaders(token)
     })
     return Result.ok(response.data)
-  } catch (error: unknown) {
+  } catch (err: unknown) {
+    const error = ensureError(err)
+
     return Result.err(error)
   }
 }

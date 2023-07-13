@@ -16,7 +16,7 @@ router.post('/insee/get_by_siret', async (req: Request, res: Response): Promise<
 
   if (etablissementResult.isErr) {
     const error = etablissementResult.error
-    res.send(401).send(error)
+    res.send(401).send(error.message)
   }
 
   if (etablissementResult.isOk) {
