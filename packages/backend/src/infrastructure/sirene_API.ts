@@ -2,6 +2,11 @@ import { Etablissement } from '../domain/types'
 import axios, { AxiosResponse } from 'axios'
 import { Result } from 'true-myth'
 
+/**
+ * Populate headers for a call to the "SIRENE" API
+ *
+ * @arg token - API access token
+ */
 const makeHeaders = (token: string) => {
   const jsonContentType = 'application/json'
   return {
@@ -11,6 +16,16 @@ const makeHeaders = (token: string) => {
   }
 }
 
+/**
+ * Returns a value if it is an Error, or encapsulates it inside an Error otherwise
+ *
+ * Javascript `throw` keyword can throw anything, not only errors, most of the times we
+ * however expect errors when we use `try/catch`.
+ *
+ * This function helps to ensure that the `catch`ed object is indeed an error.
+ *
+ * @arg value - expected to be an error, e.g. retrieved with the `catch` keyword.
+ */
 function ensureError(value: unknown): Error {
   if (value instanceof Error) return value
 
@@ -23,6 +38,12 @@ function ensureError(value: unknown): Error {
   return error
 }
 
+/**
+ * requestSireneAPI requests data about companies, given their "siret"
+ *
+ * @arg siret - siret number of the company to fetch
+ * @arg token - API access token
+ */
 export const requestSireneAPI = async (
   siret: string,
   token: string
