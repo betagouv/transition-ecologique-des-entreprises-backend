@@ -10,8 +10,7 @@
   "private": false,
   "license": "AGPL-3.0",
   "scripts": {
-    "build": "npx tsc --build --verbose",
-    "start": "npm run start --workspace packages/backend"
+    "build": "npx tsc --build --verbose"
   },
   "workspaces": [
     "./packages/*"
