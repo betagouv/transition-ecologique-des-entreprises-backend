@@ -6,7 +6,7 @@ import { fetchEtablissement } from './api.js'
  */
 export const createFeatures = (etablissementRepository: EtablissementRepository) => {
   /**
-   * fetchEtablissement passes through the Promise of the spi
+   * fetchEtablissement passes through the Promise of the infrastructure
    * (promise of Etablissement in case of success, Error otherwise)
    */
   const fetchEtablissement: fetchEtablissement = async (siret) => {
