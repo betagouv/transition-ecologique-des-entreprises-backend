@@ -1,8 +1,12 @@
 import express, { Express } from 'express'
 import router from './controller/routes.js'
 
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
 const app: Express = express()
-const port: number = 3000
+const port: number = parseInt(process.env['PORT'] || '')
 
 app.use(express.json())
 
