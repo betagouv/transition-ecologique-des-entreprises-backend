@@ -1,3 +1,6 @@
+import { Result } from 'true-myth'
 import { Etablissement } from './types.js'
 
-export type fetchEtablissement = (siret: string) => Promise<Etablissement>
+type EtablissementResult = Result<Etablissement, Error>
+
+export type fetchEtablissement = (siret: string) => Promise<EtablissementResult>
