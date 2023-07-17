@@ -15,6 +15,10 @@
   "workspaces": [
     "./packages/*"
   ],
+  "engines": {
+    "node": "20",
+    "npm": "9"
+  },
   "dependencies": {
     "@tsconfig/node20": "^20.1.0",
     "@tsconfig/strictest": "^2.0.1",
