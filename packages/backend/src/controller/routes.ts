@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { requestSireneAPI } from '../infrastructure/sirene_API'
+import { requestSireneAPI } from '../infrastructure/sirene-API'
 
 const router = Router()
 
