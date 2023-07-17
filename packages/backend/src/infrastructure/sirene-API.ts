@@ -1,6 +1,7 @@
 import { Etablissement } from '../domain/types.js'
 import axios, { AxiosResponse } from 'axios'
 import { Result } from 'true-myth'
+import { EtablissementDocument } from './types.js'
 
 /**
  * Populate headers for a call to the "SIRENE" API
@@ -51,10 +52,10 @@ export const requestSireneAPI = async (
   const api_sirene_url = `https://api.insee.fr/entreprises/sirene/V3/siret/${siret}`
 
   try {
-    const response: AxiosResponse<Etablissement> = await axios.get(api_sirene_url, {
+    const response: AxiosResponse<EtablissementDocument> = await axios.get(api_sirene_url, {
       headers: makeHeaders(token)
     })
-    return Result.ok(response.data)
+    return Result.ok(response.data as Etablissement)
   } catch (err: unknown) {
     const error = ensureError(err)
 
