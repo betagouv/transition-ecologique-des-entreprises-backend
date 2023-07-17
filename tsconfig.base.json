@@ -1,28 +1,3 @@
-// base tsconfig.json that all packages will share and extend
 {
-  "compilerOptions": {
-    "target": "es2022",
-    "module": "commonjs",
-    "moduleResolution": "node",
-
-    // Generate .d.ts (type definitions) files for every TypeScript or JavaScript file inside your project
-    "declaration": true,
-
-    // instruct tsc that there are project references
-    "composite": true,
-
-    // Go to Definition will go to the actual file and not the .d.ts file
-    "declarationMap": true,
-
-    // Do not allow implicit any
-    "strict": true,
-
-    // save information about the project graph from the last compilation to files stored on disk.
-    "incremental": true,
-
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
-  }
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node20/tsconfig"]
 }

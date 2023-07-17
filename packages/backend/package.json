@@ -1,5 +1,6 @@
 {
   "name": "@tee/backend",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "build/src/index.js",

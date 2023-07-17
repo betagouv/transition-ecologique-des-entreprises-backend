@@ -1,4 +1,4 @@
-import { Etablissement } from '../domain/types'
+import { Etablissement } from '../domain/types.js'
 import axios, { AxiosResponse } from 'axios'
 import { Result } from 'true-myth'
 
