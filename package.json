@@ -1,0 +1,29 @@
+{
+  "name": "tee",
+  "version": "1.0.0",
+  "description": "Dépôt de code le la startup d'État \"Transition écologique des entreprises\"",
+  "keywords": [],
+  "author": "Julien Paris (https://multi.coop)",
+  "contributors": [
+    "Pierre Camilleri (https://multi.coop)"
+  ],
+  "private": false,
+  "license": "AGPL-3.0",
+  "scripts": {
+    "build": "npx tsc --build --verbose"
+  },
+  "workspaces": [
+    "./packages/*"
+  ],
+  "engines": {
+    "node": "16.12.0",
+    "npm": "8.1.0"
+  },
+  "dependencies": {
+    "typescript": "~4.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.0",
+    "ts-node": "^10.9.1"
+  }
+}
